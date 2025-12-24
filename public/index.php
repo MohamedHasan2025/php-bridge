@@ -16,7 +16,7 @@ $input = json_decode(file_get_contents('php://input'), true) ?: $_POST ?: $_GET;
 // Simple routing
 switch ($endpoint) {
     case 'get-availabilities':
-        $controller->sendAvailability($input);
+        $controller->sendAvailability();
         break;
     default:
         echo json_encode(['error' => true, 'message' => 'Endpoint not found']);
