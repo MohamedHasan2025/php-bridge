@@ -1,19 +1,22 @@
+# Base PHP + Apache image
 FROM php:8.2-apache
 
-# Install required system packages and PHP extensions
-RUN apt-get update && apt-get install -y git unzip curl libzip-dev libxml2-dev libicu-dev libonig-dev \
+# Install system packages and required PHP extensions
+RUN apt-get update && apt-get install -y \
+    git unzip curl libzip-dev libxml2-dev libicu-dev libonig-dev \
     && docker-php-ext-install intl mbstring xml zip opcache
 
 # Enable Apache rewrite
 RUN a2enmod rewrite
 
-# Set document root
+# Set Apache document root
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
-# Update Apache config
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf /etc/apache2/apache2.conf
+# Update Apache configs for new document root
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
+    /etc/apache2/sites-available/*.conf /etc/apache2/apache2.conf
 
-# Copy project
+# Copy project files
 COPY . /var/www/html
 WORKDIR /var/www/html
 
@@ -23,7 +26,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
-# Set permissions
+# Set permissions for Apache
 RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
