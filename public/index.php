@@ -1,6 +1,8 @@
 <?php
 header('Content-Type: application/json');
 
+phpinfo();
+
 require __DIR__ . '/../app/Controllers/ApiController.php';
 
 $controller = new ApiController();
