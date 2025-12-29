@@ -10,7 +10,7 @@ if (!is_dir($systemPath)) {
 $applicationPath = realpath(__DIR__ . '/../app');
 
 // Path to writable directory
-$writablePath = realpath(__DIR__ . '/../writable');
+$writablePath = realpath(__DIR__ . '/../writable'); 
 
 // Define FCPATH
 define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
