@@ -1,8 +1,14 @@
 <?php
 header('Content-Type: application/json');
 
-require __DIR__ . '/../app/Controllers/ApiController.php';
+// Load Composer autoloader
 require __DIR__ . '/../vendor/autoload.php';
+
+require __DIR__ . '/../app/Controllers/ApiController.php';
+
+
+// Start CodeIgniter
+$app = require_once __DIR__ . '/../vendor/codeigniter4/framework/system/bootstrap.php';;
 
 $controller = new ApiController();
 
