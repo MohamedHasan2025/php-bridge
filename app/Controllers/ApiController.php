@@ -3,7 +3,9 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
-
+use CodeIgniter\Model
+use CodeIgniter\Database\Database
+    
 class HDAPITools
 {
     protected $digest = 'SHA512';
