@@ -15,7 +15,8 @@ use CodeIgniter\Router\RouteCollection;
 
     $routes->get('/sendJson', 'ApiController::sendJson');
 
-    $routes->get('/get-availabilities', 'ApiController::sendAvailability');
+    $routes->post('get-availabilities', 'ApiController::sendAvailability');
+    $routes->get('get-availabilities', 'ApiController::sendAvailability'); // optional for GET
 
     $routes->post('/reserve', 'ApiController::reserveAvailability');
 
