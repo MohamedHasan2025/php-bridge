@@ -1,28 +1,20 @@
 <?php
 
-/**
- * --------------------------------------------------------------------
- * Front Controller for CodeIgniter 4
- * --------------------------------------------------------------------
- * This is the entry point for all requests to your application.
- * It bootstraps the framework and runs the application.
- */
+// Path to the system directory.
+$systemPath = realpath(__DIR__ . '/../vendor/codeigniter4/framework/system');
 
-// Path to the application directory.
-$pathsPath = realpath(__DIR__ . '/../app/Config/Paths.php');
+// Path to the app directory.
+$applicationPath = realpath(__DIR__ . '/../app');
 
-if (!file_exists($pathsPath)) {
-    die('Paths.php not found. Make sure app/Config/Paths.php exists.');
-}
+// Path to the writable directory.
+$writablePath = realpath(__DIR__ . '/../writable');
 
-// Load the Paths configuration
-$paths = require $pathsPath;
-
-// Ensure the autoloader is loaded
+// Load Composer autoloader
 require __DIR__ . '/../vendor/autoload.php';
 
-// Load the framework bootstrap
-$app = require $paths->systemDirectory . '/bootstrap.php';
+// Boot CodeIgniter
+$paths = new \Config\Paths();
+$app = require_once $systemPath . '/bootstrap.php';
 
 // Run the application
 $app->run();
