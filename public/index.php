@@ -2,6 +2,7 @@
 header('Content-Type: application/json');
 
 require __DIR__ . '/../app/Controllers/ApiController.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 $controller = new ApiController();
 
