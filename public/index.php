@@ -1,17 +1,28 @@
 <?php
 
+/**
+ * --------------------------------------------------------------------
+ * Front Controller for CodeIgniter 4
+ * --------------------------------------------------------------------
+ * This is the entry point for all requests to your application.
+ * It bootstraps the framework and runs the application.
+ */
+
 // Path to the application directory.
 $pathsPath = realpath(__DIR__ . '/../app/Config/Paths.php');
 
-// Ensure file exists
 if (!file_exists($pathsPath)) {
-    die('Paths.php not found. Please make sure app/Config/Paths.php exists.');
+    die('Paths.php not found. Make sure app/Config/Paths.php exists.');
 }
 
-// Load the paths config
+// Load the Paths configuration
 $paths = require $pathsPath;
 
-// Bootstrapping is handled automatically by CodeIgniter 4.3+
+// Ensure the autoloader is loaded
+require __DIR__ . '/../vendor/autoload.php';
+
+// Load the framework bootstrap
+$app = require $paths->systemDirectory . '/bootstrap.php';
+
 // Run the application
-$app = require rtrim($paths->systemDirectory, '\\/ ') . '/bootstrap.php';
 $app->run();
