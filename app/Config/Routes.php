@@ -2,6 +2,8 @@
 
 use CodeIgniter\Router\RouteCollection;
 
+$routes = \Config\Services::routes();
+
 /**
  * @var RouteCollection $routes
  */
