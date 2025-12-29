@@ -18,7 +18,10 @@ define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
 // Load Composer autoloader
 require FCPATH . '/../vendor/autoload.php';
 
+require FCPATH . '../app/Config/Paths.php';
+
 // Load CodeIgniter
 $paths = new \Config\Paths();
 $app = \Config\Services::request(); // framework bootstrapped automatically
+require rtrim($paths->systemDirectory, '\\/ ') . DIRECTORY_SEPARATOR . 'bootstrap.php';
 $app->run();
